@@ -65,27 +65,12 @@
       "width": 1000,
       "fullscreen": false
     }
-  },
-  "schema": {
-    "arguments": {
-      "execute": {
-        "inArguments": [
-          {
-            "Contact.Key": "{{Contact.Key}}"
-          },
-          {
-            "FirstName": "759c39f5-b323-d43e-f90a-fe5b074097b2.MOBILENUMBER}}"
-          }
-        ],
-        "outArguments": [],
-        "url": "https://icsintegration/journeybuilder/execute/",
-        "verb": "POST",
-        "body": "",
-        "header": "",
-        "format": "json",
-        "useJwt": false,
-        "timeout": 10000
-      }
+  },"schema": {
+        "arguments": {
+            "execute": {
+                "inArguments": [],
+                "outArguments": []
+            }
+        }
     }
-  }
 }
