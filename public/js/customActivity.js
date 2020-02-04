@@ -1,10 +1,10 @@
 
 define(
 [
-    'postmonger','require','jquery'
+    'postmonger'
 	
 ], function (
-    Postmonger,require,jquery
+    Postmonger
 ) {
     'use strict';
 
