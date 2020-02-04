@@ -1,5 +1,8 @@
-define([
-    'postmonger'
+
+define(
+[
+    'postmonger','require','jquery'
+	
 ], function (
     Postmonger
 ) {
