@@ -4,7 +4,7 @@ define(
     'postmonger','require','jquery'
 	
 ], function (
-    Postmonger
+    Postmonger,require,jquery
 ) {
     'use strict';
 
