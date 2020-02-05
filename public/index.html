@@ -2,6 +2,24 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/postmonger.js"></script>
+    <script type="text/javascript" src="js/require.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var config = {
+                baseUrl: ''
+            };
+
+            var dependencies = [
+                'customActivity'
+            ];
+
+            require(config, dependencies);
+        })();
+    </script>
+
+
 <style>
 .accordion {
  
@@ -30,7 +48,7 @@
 
 </head>
 <body>
-<script src="js/postmonger.js"></script>
+
 
 
 
