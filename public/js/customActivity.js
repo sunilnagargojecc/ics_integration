@@ -7,13 +7,9 @@ define([
 
     var connection = new Postmonger.Session();
     var payload = {};
+	var authTokens = {};
     var lastStepEnabled = false;
-    var steps = [ // initialize to the same value as what's set in config.json for consistency
-        { "label": "Step 1", "key": "step1" },
-        { "label": "Step 2", "key": "step2" },
-        { "label": "Step 3", "key": "step3" },
-        { "label": "Step 4", "key": "step4", "active": false }
-    ];
+   
     var currentStep = steps[0].key;
 
     $(window).ready(onRender);
@@ -22,9 +18,9 @@ define([
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-    connection.on('clickedNext', onClickedNext);
-    connection.on('clickedBack', onClickedBack);
-    connection.on('gotoStep', onGotoStep);
+    connection.on('clickedNext', save);
+   
+    
 
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
@@ -34,21 +30,21 @@ define([
         connection.trigger('requestEndpoints');
 
         // Disable the next button if a value isn't selected
-        $('#select1').change(function() {
+        /*$('#select1').change(function() {
             var message = getMessage();
             connection.trigger('updateButton', { button: 'next', enabled: Boolean(message) });
 
             $('#message').html(message);
-        });
+        });*/
 
         // Toggle step 4 active/inactive
         // If inactive, wizard hides it and skips over it during navigation
-        $('#toggleLastStep').click(function() {
+        /*$('#toggleLastStep').click(function() {
             lastStepEnabled = !lastStepEnabled; // toggle status
             steps[3].active = !steps[3].active; // toggle active
 
             connection.trigger('updateSteps', steps);
-        });
+        });*/
     }
 
     function initialize (data) {
@@ -68,14 +64,20 @@ define([
 
         $.each(inArguments, function(index, inArgument) {
             $.each(inArgument, function(key, val) {
-                if (key === 'message') {
+                /*if (key === 'message') {
                     message = val;
-                }
+                }*/
             });
+        });
+		
+		connection.trigger('updateButton', {
+            button: 'next',
+            text: 'done',
+            visible: true
         });
 
         // If there is no message selected, disable the next button
-        if (!message) {
+        /*if (!message) {
             showStep(null, 1);
             connection.trigger('updateButton', { button: 'next', enabled: false });
             // If there is a message, skip to the summary step
@@ -83,12 +85,13 @@ define([
             $('#select1').find('option[value='+ message +']').attr('selected', 'selected');
             $('#message').html(message);
             showStep(null, 3);
-        }
+        }*/
     }
 
     function onGetTokens (tokens) {
         // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
         // console.log(tokens);
+		authTokens = tokens;
     }
 
     function onGetEndpoints (endpoints) {
@@ -96,7 +99,7 @@ define([
         // console.log(endpoints);
     }
 
-    function onClickedNext () {
+    /*function onClickedNext () {
         if (
             (currentStep.key === 'step3' && steps[3].active === false) ||
             currentStep.key === 'step4'
@@ -105,7 +108,7 @@ define([
         } else {
             connection.trigger('nextStep');
         }
-    }
+    }*/
 
     function onClickedBack () {
         connection.trigger('prevStep');
@@ -116,7 +119,7 @@ define([
         connection.trigger('ready');
     }
 
-    function showStep(step, stepIndex) {
+    /*function showStep(step, stepIndex) {
         if (stepIndex && !step) {
             step = steps[stepIndex-1];
         }
@@ -173,10 +176,10 @@ define([
                 $('#step4').show();
                 break;
         }
-    }
+    }*/
 
     function save() {
-        var name = $('#select1').find('option:selected').html();
+       // var name = $('#select1').find('option:selected').html();
         var value = getMessage();
 
         // 'payload' is initialized on 'initActivity' above.
