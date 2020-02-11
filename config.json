@@ -21,7 +21,7 @@
         }
       ],
       "outArguments": [],
-      "url": "https://icsintegration.herokuapp.com/journeybuilder/execute",
+      "url": "https://icsintegration/journeybuilder/execute",
       "verb": "POST",
       "body": "",
       "header": "",
@@ -33,22 +33,22 @@
   "configurationArguments": {
     "applicationExtensionKey": "a494d925-6444-46f1-ae19-895c925fbed2",
     "save": {
-      "url": "https://icsintegration.herokuapp.com/journeybuilder/save",
+      "url": "https://icsintegration/journeybuilder/save",
       "verb": "POST",
       "useJwt": true
     },
     "publish": {
-      "url": "https://icsintegration.herokuapp.com/journeybuilder/publish",
+      "url": "https://icsintegration/journeybuilder/publish",
       "verb": "POST",
       "useJwt": true
     },
     "stop": {
-      "url": "https://icsintegration.herokuapp.com/journeybuilder/stop",
+      "url": "https://icsintegration/journeybuilder/stop",
       "verb": "POST",
       "useJwt": true
     },
     "validate": {
-      "url": "https://icsintegration.herokuapp.com/journeybuilder/validate",
+      "url": "https://icsintegration/journeybuilder/validate",
       "verb": "POST",
       "useJwt": true
     }
@@ -65,12 +65,27 @@
       "width": 1000,
       "fullscreen": false
     }
-  },"schema": {
-        "arguments": {
-            "execute": {
-                "inArguments": [],
-                "outArguments": []
-            }
-        }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "inArguments": [
+          {
+            "Contact.Key": "{{Contact.Key}}"
+          },
+          {
+            "FirstName": "759c39f5-b323-d43e-f90a-fe5b074097b2.MOBILENUMBER}}"
+          }
+        ],
+        "outArguments": [],
+        "url": "https://icsintegration/journeybuilder/execute/",
+        "verb": "POST",
+        "body": "",
+        "header": "",
+        "format": "json",
+        "useJwt": false,
+        "timeout": 10000
+      }
     }
+  }
 }
